@@ -5,7 +5,7 @@ public class Developer extends Employee {
 
     public Developer(String name, int age, double salary) {
         super(name, age, salary);
-        projectManager = null;
+        this.projectManager = null;
     }
 
     public Manager getProjectManager() {
@@ -18,9 +18,13 @@ public class Developer extends Employee {
      * @throws IllegalStateException when this developer already has a project manager
      */
     protected void setProjectManager(Manager projectManager) throws IllegalStateException {
-        if (this.projectManager != null) {
-            throw new IllegalStateException(this.getName() + " already has a manager: " + projectManager.getName());
-        } else {
+        //if (this.projectManager != null)
+        if(getProjectManager()!=null)
+        {
+            throw new IllegalStateException(this.getName() + " already has a manager: " + this.projectManager.getName());
+        }
+        else
+        {
             this.projectManager = projectManager;
         }
     }

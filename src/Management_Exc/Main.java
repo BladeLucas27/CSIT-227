@@ -25,18 +25,15 @@ public class Main {
         Employee emp = null;
         for(Person p : persons)
         {
-            if(p instanceof Manager)
-            {
                 if (p.getName().equals(manager))
                 {
-                    if(!(p instanceof Manager))
+                    if(p instanceof Manager)
                     {
-                        throw new ClassCastException(p.getName() + " is not a Manager");
+                        m = (Manager) p;
+                        break;
                     }
-                    m = (Manager) p;
-                    break;
+                    throw new ClassCastException(p.getName() + " is not a manager");
                 }
-            }
         }
         if(m == null)
         {
@@ -44,17 +41,14 @@ public class Main {
         }
         for(Person p : persons)
         {
-            if(p instanceof Employee)
+            if (p.getName().equals(employee))
             {
-                if (p.getName().equals(employee))
+                if(p instanceof Employee)
                 {
-                    if(!(p instanceof Employee))
-                    {
-                        throw new ClassCastException(p.getName() + " is not an Employee");
-                    }
                     emp = (Employee) p;
                     break;
                 }
+                throw new ClassCastException(p.getName() + " is not an employee");
             }
         }
         if(emp == null)
@@ -77,42 +71,28 @@ public class Main {
     public static void assignPM(List<Person> persons, String developer, String manager) {
         Manager m = null;
         Developer d = null;
-        for(Person p : persons)
-        {
-            if(p instanceof Manager)
-            {
-                if (p.getName().equals(manager))
-                {
-                    if(!(p instanceof Manager))
-                    {
-                        throw new ClassCastException(p.getName() + " is not a Manager");
-                    }
+        for(Person p : persons) {
+            if (p.getName().equals(manager)) {
+                if(p instanceof Manager) {
                     m = (Manager) p;
                     break;
                 }
+                throw new ClassCastException(p.getName() + " is not a manager");
             }
         }
-        if(m == null)
-        {
+        if(m == null) {
             throw new NoSuchElementException(manager + " does not exist");
         }
-        for(Person p : persons)
-        {
-            if(p instanceof Developer)
-            {
-                if (p.getName().equals(developer))
-                {
-                    if(!(p instanceof Developer))
-                    {
-                        throw new ClassCastException(p.getName() + " is not a Developer");
-                    }
+        for(Person p : persons) {
+            if (p.getName().equals(developer)) {
+                if(p instanceof Developer) {
                     d = (Developer) p;
                     break;
                 }
+                throw new ClassCastException(p.getName() + " is not a developer");
             }
         }
-        if(d == null)
-        {
+        if(d == null) {
             throw new NoSuchElementException(developer + " does not exist");
         }
         d.setProjectManager(m);
@@ -127,48 +107,34 @@ public class Main {
      * @throws IllegalArgumentException when given customer or employee is not what they are
      * @throws NoSuchElementException when given customer or employee is not in the list of persons
      */
-    public static String customerSpeak(List<Person> persons, String customer, String employee)
-    {
+    public static String customerSpeak(List<Person> persons, String customer, String employee) {
         Customer c = null;
         Employee emp = null;
-        for(Person p : persons)
-        {
-            if(p instanceof Customer)
-            {
-                if (p.getName().equals(customer))
-                {
-                    if(!(p instanceof Customer))
-                    {
-                        throw new ClassCastException(p.getName() + " is not a Customer");
-                    }
+        for(Person p : persons) {
+            if (p.getName().equals(customer)) {
+                if(p instanceof Customer) {
                     c = (Customer) p;
                     break;
                 }
+                throw new ClassCastException(p.getName() + " is not a customer");
             }
         }
-        if(c == null)
-        {
+        if(c == null) {
             throw new NoSuchElementException(customer + " does not exist");
         }
-        for(Person p : persons)
-        {
-            if(p instanceof Employee)
-            {
-                if (p.getName().equals(employee))
-                {
-                    if(!(p instanceof Employee))
-                    {
-                        throw new ClassCastException(p.getName() + " is not an Employee");
-                    }
+        for(Person p : persons) {
+            if (p.getName().equals(employee)) {
+                if(p instanceof Employee) {
                     emp = (Employee) p;
                     break;
                 }
+                throw new ClassCastException(p.getName() + " is not an employee");
             }
         }
-        if(emp == null)
-        {
+        if(emp == null) {
             throw new NoSuchElementException(employee + " does not exist");
         }
-        return null;
+        return c.speak(emp);
+        //return null;
     }
 }

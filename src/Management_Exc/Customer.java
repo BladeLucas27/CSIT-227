@@ -18,14 +18,17 @@ public class Customer extends Person {
      */
     public String speak(Employee e)
     {
-        if(e instanceof Developer && this.getAge() > e.getAge())
+
+        if(e instanceof Developer && this.getAge() > e.getAge() && ((Developer) e).getProjectManager() != null)
         {
-            System.out.println("Can I see your manager ");
+            //System.out.println("Can I see your manager " + ((Developer)e).getProjectManager().getName());
+            return "Can I see your manager " + ((Developer)e).getProjectManager().getName() + "?";
         }
         else
         {
-            System.out.println("Oh, hello, " + e.getName() + ". Can you assist me?");
+            //System.out.println("Oh, hello, " + e.getName() + ". Can you assist me?");
+            return "Oh, hello, " + e.getName() + ". Can you assist me?";
         }
-        return null;
+        //return null;
     }
 }
